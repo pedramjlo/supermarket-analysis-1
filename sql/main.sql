@@ -58,8 +58,6 @@ FROM CUSTOMER_TYPE_SALES
 ORDER BY Customer_Type_Sales DESC;
 
 
-
-
 -- QUANTITY OF SALES BY CUSTOMER TYPE
 /*
 
@@ -114,7 +112,7 @@ ORDER BY Product_Line_Sales DESC;
 
 
 
--- PRODUCT LINE POPULARITY BY GENDER
+-- PRODUCT LINE REVENUE BY GENDER
 /*
 
 (add percentage of sales by gender)
@@ -130,6 +128,7 @@ Product Line                    Female                  Male
 
 */
 
+
 WITH PRODUCT_LINE_SALES_BY_GENDER AS (
     SELECT 
         Product_line,
@@ -137,18 +136,8 @@ WITH PRODUCT_LINE_SALES_BY_GENDER AS (
         SUM(Quantity * Unit_Price) + SUM(Tax_five_percent) AS Product_Line_Sales,
 
     FROM market_sales_analysis
-    WHERE Gender = 'Female' OR Gender = 'Male'
-    GROUP BY Product_line, Gender
-),
-
-
-PRODUCT_LINE_GENDER_SHARES AS (
-    SELECT  
-        Product_line,
-        Gender,
-    FROM PRODUCT_LINE_SALES_BY_GENDER
-),
-
+    WHERE Gender IN ('Female', 'Male')
+)
 
 PRODUCT_LINE_RANKED AS (
     SELECT 
@@ -158,6 +147,7 @@ PRODUCT_LINE_RANKED AS (
         RANK() OVER (ORDER BY Product_Line_Sales DESC) AS Rank
     FROM PRODUCT_LINE_SALES_BY_GENDER
 )
+
 SELECT 
     Product_line,
     Gender,
@@ -169,3 +159,58 @@ ORDER BY Product_Line_Sales DESC;
 
 
 
+
+
+
+-- PRODUCT LINE REVENUE PERCENTAGE BY GENDER
+/*
+
+(add percentage of sales by gender)
+
+Product Line                    Female                  Male
+
+1- Fashion accessories          55.45%                   44.54%
+2- Sports and travel            51.78%                   48.21%
+3- Home and lifestyle           55.1%                    44.89%
+4- Food and beverages           59.41%              	40.58%
+5- Electronic accessories       49.61%                  50.38%
+6- Health and beauty            38.98%             	    61.01%
+
+*/
+
+-- Calculates total sales for each product line, segmented by gender
+WITH PRODUCT_LINE_SALES_BY_GENDER AS (
+    SELECT 
+        Product_line,
+        Gender,
+        SUM(Quantity * Unit_Price) + SUM(Tax_five_percent) AS Product_Line_Sales
+    FROM market_sales_analysis
+    WHERE Gender IN ('Female', 'Male')
+    GROUP BY Product_line, Gender
+),
+PRODUCT_LINE_TOTALS AS (
+    SELECT
+        Product_line,
+        SUM(Product_Line_Sales) AS Total_Product_Line_Sales
+    FROM PRODUCT_LINE_SALES_BY_GENDER
+    GROUP BY Product_line
+),
+PRODUCT_LINE_SALES_WITH_PERCENTAGE AS (
+    SELECT 
+        plsg.Product_line,
+        plsg.Gender,
+        plsg.Product_Line_Sales,
+        plt.Total_Product_Line_Sales,
+        -- Share of revenue in percentage
+        (plsg.Product_Line_Sales / plt.Total_Product_Line_Sales) * 100 AS Revenue_Share_Percentage
+    FROM PRODUCT_LINE_SALES_BY_GENDER plsg
+    JOIN PRODUCT_LINE_TOTALS plt
+    ON plsg.Product_line = plt.Product_line
+)
+SELECT 
+    Product_line,
+    Gender,
+    Product_Line_Sales,
+    Revenue_Share_Percentage
+FROM PRODUCT_LINE_SALES_WITH_PERCENTAGE
+ORDER BY Product_line, Gender;
