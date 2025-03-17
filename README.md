@@ -18,6 +18,7 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
 
 # Data Exploratory Analysis (SQL)
 - SALES RANKING BY GENDER
+<table><tr><th>Gender</th><th>Total_Sales</th><th>Rank</th><tr><tr><td>Female</td><td>181158.6135</td><td>1</td></tr><tr><td>Male</td><td>167533.778</td><td>2</td></tr></table>
 - SALES RANKING BY BRANCH
 - TOTAL SALES BY CUSTOMER TYPE
 - QUANTITY OF SALES BY CUSTOMER TYPE
