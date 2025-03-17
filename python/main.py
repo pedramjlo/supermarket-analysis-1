@@ -31,7 +31,7 @@ conn.commit()
 df = pd.read_csv('/Users/pedramjalali/Documents/data_analysis/E-commerce-analysis/dataset/cleaned/cleaned_market_sales.csv')
 
 # Step 6: Load data into the SQLite database table
-df.to_sql('uae_cars', conn, if_exists='append', index=False)
+df.to_sql('market_sales', conn, if_exists='append', index=False)
 
 # Step 7: Close the connection
 conn.close()
