@@ -1,4 +1,4 @@
-Gender,Invoice ID,Branch,City,Customer type,Product line,Unit price,Quantity,Tax 5%
+Gender,Invoice_Id,Branch,City,Customer_Type,Product_Line,Unit_Price,Quantity,Tax_5%
 Female,750-67-8428,A,Yangon,Member,Health and beauty,74.69,7,261.415
 Female,226-31-3081,C,Naypyitaw,Normal,Electronic accessories,15.28,5,3.82
 Female,355-53-5943,A,Yangon,Member,Electronic accessories,68.84,6,20.652
