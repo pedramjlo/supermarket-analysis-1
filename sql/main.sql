@@ -133,12 +133,11 @@ WITH PRODUCT_LINE_SALES_BY_GENDER AS (
     SELECT 
         Product_line,
         Gender,
-        SUM(Quantity * Unit_Price) + SUM(Tax_five_percent) AS Product_Line_Sales,
-
+        SUM(Quantity * Unit_Price) + SUM(Tax_five_percent) AS Product_Line_Sales
     FROM market_sales_analysis
     WHERE Gender IN ('Female', 'Male')
-)
-
+    GROUP BY Product_line, Gender
+),
 PRODUCT_LINE_RANKED AS (
     SELECT 
         Product_line,
@@ -147,14 +146,13 @@ PRODUCT_LINE_RANKED AS (
         RANK() OVER (ORDER BY Product_Line_Sales DESC) AS Rank
     FROM PRODUCT_LINE_SALES_BY_GENDER
 )
-
 SELECT 
     Product_line,
     Gender,
     Product_Line_Sales
 FROM PRODUCT_LINE_SALES_BY_GENDER
-GROUP BY Product_line, Gender
 ORDER BY Product_Line_Sales DESC;
+
 
 
 
@@ -164,8 +162,6 @@ ORDER BY Product_Line_Sales DESC;
 
 -- PRODUCT LINE REVENUE PERCENTAGE BY GENDER
 /*
-
-(add percentage of sales by gender)
 
 Product Line                    Female                  Male
 
@@ -178,7 +174,6 @@ Product Line                    Female                  Male
 
 */
 
--- Calculates total sales for each product line, segmented by gender
 WITH PRODUCT_LINE_SALES_BY_GENDER AS (
     SELECT 
         Product_line,

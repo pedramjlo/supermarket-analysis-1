@@ -2,6 +2,6 @@
 python/sqlCOnfig.py
 /myenv
 .env
-.market_sales_analysis.db
+*.db
 
 
