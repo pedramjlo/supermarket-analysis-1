@@ -116,6 +116,9 @@ ORDER BY Product_Line_Sales DESC;
 
 -- PRODUCT LINE POPULARITY BY GENDER
 /*
+
+(add percentage of sales by gender)
+
 Product Line                    Female                  Male
 
 1- Fashion accessories          34430.9755              27624.9015
@@ -131,11 +134,22 @@ WITH PRODUCT_LINE_SALES_BY_GENDER AS (
     SELECT 
         Product_line,
         Gender,
-        SUM(Quantity * Unit_Price) + SUM(Tax_five_percent) AS Product_Line_Sales
+        SUM(Quantity * Unit_Price) + SUM(Tax_five_percent) AS Product_Line_Sales,
+
     FROM market_sales_analysis
     WHERE Gender = 'Female' OR Gender = 'Male'
     GROUP BY Product_line, Gender
 ),
+
+
+PRODUCT_LINE_GENDER_SHARES AS (
+    SELECT  
+        Product_line,
+        Gender,
+    FROM PRODUCT_LINE_SALES_BY_GENDER
+),
+
+
 PRODUCT_LINE_RANKED AS (
     SELECT 
         Product_line,
@@ -151,3 +165,7 @@ SELECT
 FROM PRODUCT_LINE_SALES_BY_GENDER
 GROUP BY Product_line, Gender
 ORDER BY Product_Line_Sales DESC;
+
+
+
+
