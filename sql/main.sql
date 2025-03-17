@@ -111,3 +111,43 @@ SELECT
     Product_Line_Sales
 FROM PRODUCT_LINE_RANKED
 ORDER BY Product_Line_Sales DESC;
+
+
+
+-- PRODUCT LINE POPULARITY BY GENDER
+/*
+Product Line                    Female                  Male
+
+1- Fashion accessories          34430.9755              27624.9015
+2- Sports and travel            31059.774               28919.448
+3- Home and lifestyle           32458.0935              26490.183
+4- Food and beverages           34919.488               23898.942
+5- Electronic accessories       28753.815               29199.849
+6- Health and beauty            20955.9675              32787.3345
+
+*/
+
+WITH PRODUCT_LINE_SALES_BY_GENDER AS (
+    SELECT 
+        Product_line,
+        Gender,
+        SUM(Quantity * Unit_Price) + SUM(Tax_five_percent) AS Product_Line_Sales
+    FROM market_sales_analysis
+    WHERE Gender = 'Female' OR Gender = 'Male'
+    GROUP BY Product_line, Gender
+),
+PRODUCT_LINE_RANKED AS (
+    SELECT 
+        Product_line,
+        Gender,
+        Product_Line_Sales,
+        RANK() OVER (ORDER BY Product_Line_Sales DESC) AS Rank
+    FROM PRODUCT_LINE_SALES_BY_GENDER
+)
+SELECT 
+    Product_line,
+    Gender,
+    Product_Line_Sales
+FROM PRODUCT_LINE_SALES_BY_GENDER
+GROUP BY Product_line, Gender
+ORDER BY Product_Line_Sales DESC;
