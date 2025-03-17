@@ -2,7 +2,7 @@ import pandas as pd
 import sqlite3
 
 # Step 1: Create a connection to the SQLite database
-conn = sqlite3.connect('market_sales.db')  
+conn = sqlite3.connect('market_sales_analysis.db')  
 
 # Step 2: Create a cursor object
 cur = conn.cursor()
@@ -10,7 +10,7 @@ cur = conn.cursor()
 # Step 3: Execute SQL commands
 # Create a table
 cur.execute('''
-CREATE TABLE IF NOT EXISTS uae_cars (
+CREATE TABLE IF NOT EXISTS market_sales (
     id INTEGER PRIMARY KEY,
     Gender TEXT NOT NULL,
     Invoice_ID VARCHAR(50),
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS uae_cars (
     Product_Line TEXT NOT NULL,
     Unit_Price NUMERIC(10, 2),
     Quantity INTEGER,
-    Tax_5_PERCENT FLOAT
+    Tax_5_Percent FLOAT
 );
 ''')
 
@@ -31,7 +31,7 @@ conn.commit()
 df = pd.read_csv('/Users/pedramjalali/Documents/data_analysis/E-commerce-analysis/dataset/cleaned/cleaned_market_sales.csv')
 
 # Step 6: Load data into the SQLite database table
-df.to_sql('market_sales', conn, if_exists='append', index=False)
+df.to_sql('market_sales_analysis', conn, if_exists='append', index=False)
 
 # Step 7: Close the connection
 conn.close()
