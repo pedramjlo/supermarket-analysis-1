@@ -53,6 +53,7 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
     men account for 50.38% of total revenue of the said product line
     (Electronic accessories are second to last most popular product lines, concluding that, the market has been successfully attracting women, but has potential for
     more male customers)
+    <br>
   - Women, unsurprisingly, lead the generated revenue in 5 categories; Fashion accessories, Sports and travel, Home and lifestyle, Food and beverages, and Health and beauty. 
   - There could have been more product lines focused on men
   - The largest disparity in the product line is in Food and beverages! Women tend to spend a lot more on eating than men which could be due to women spending more time shopping on average
