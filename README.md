@@ -48,25 +48,8 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
 # Summary
 - The dataset was initially clean and did not require implementing doing a whole lot of data cleaning methods. The column were of expected data types and there was no sign of duplicates or missing/null values.
 
-  ## Gender and Revenue
-  - Although the disparity between men and women numbers is not significant, yet women outspend men in majority of product line except Electronic accessories where
-    men account for 50.38% of total revenue of the said product line
-    (Electronic accessories are second to last most popular product lines, concluding that, the market has been successfully attracting women, but has potential for
-    more male customers)
-    <br>
-    
-  - Women, unsurprisingly, lead the generated revenue in 5 categories; Fashion accessories, Sports and travel, Home and lifestyle, Food and beverages, and Health and beauty.
-    
-  - There could have been more product lines focused on men
-    
-  - The largest disparity in the product line, only after Health and beauty, is in Food and beverages! Women tend to spend a lot more on eating than men which could be due to women spending more time shopping on average
-
-  ## Memberships and Revenue
-  - Apprantly, there is not much difference between the amount of money spent by membership-holders versus normal customers which tells us that perhaps our membership
-    types do not offer many attractive options to our members.
-    * The solutions ->
-      - occasional or time special discounts
-      - by each purchase add points to member's account,
-      - reconsider membership pricing
-      - direct the membership to regular customers with premium benfits not occasional buyers
-      - since most product lines sell the most to women and women tend to buy food more, then give them food discount by buying from other product lines
+  ## My Observation
+  - Surprisingly, men spend a lot more on Health and beauty, accounting for 61.01% of the said product line total revenue
+  - 2 product lines where men lead the spending are the 2 least revenue-generative product lines (Electronic accessories & Health and beauty)
+  - The largest disparity between product lines, was Health and beauty in which men outspend women by 23%
+  - The second largest disparity was Food and beverages; Women outspend men by 19%
