@@ -37,3 +37,8 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
   
 ## PRODUCT LINE REVENUE PERCENTAGE BY GENDER
 <table><tr><th>Product_line</th><th>Gender</th><th>Product_Line_Sales</th><th>Revenue_Share_Percentage</th><tr><tr><td>Electronic accessories</td><td>Female</td><td>28503.365</td><td>49.6197106889164</td></tr><tr><td>Electronic accessories</td><td>Male</td><td>28940.269</td><td>50.3802893110836</td></tr><tr><td>Fashion accessories</td><td>Female</td><td>34163.9755</td><td>55.4502179016265</td></tr><tr><td>Fashion accessories</td><td>Male</td><td>27448.0015</td><td>44.5497820983735</td></tr><tr><td>Food and beverages</td><td>Female</td><td>34670.138</td><td>59.4163748272313</td></tr><tr><td>Food and beverages</td><td>Male</td><td>23681.012</td><td>40.5836251727687</td></tr><tr><td>Health and beauty</td><td>Female</td><td>20773.8375</td><td>38.9817979437551</td></tr><tr><td>Health and beauty</td><td>Male</td><td>32517.2845</td><td>61.0182020562449</td></tr><tr><td>Home and lifestyle</td><td>Female</td><td>32228.5435</td><td>55.1045108209385</td></tr><tr><td>Home and lifestyle</td><td>Male</td><td>26257.673</td><td>44.8954891790615</td></tr><tr><td>Sports and travel</td><td>Female</td><td>30818.754</td><td>51.7890078243214</td></tr><tr><td>Sports and travel</td><td>Male</td><td>28689.538</td><td>48.2109921756786</td></tr></table>
+
+
+# Summary
+- The dataset was initially clean and did not require implementing doing a whole lot of data cleaning methods. The column were of expected data types and there was no sign of duplicates or missing/null values.
+- 
