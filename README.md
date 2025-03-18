@@ -41,4 +41,6 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
 
 # Summary
 - The dataset was initially clean and did not require implementing doing a whole lot of data cleaning methods. The column were of expected data types and there was no sign of duplicates or missing/null values.
-- 
+
+  ## Gender
+  Although the disparity between men and women numbers is not significant, yet women outspend men in majority of product line except 
