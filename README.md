@@ -59,7 +59,7 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
     
   - There could have been more product lines focused on men
     
-  - The largest disparity in the product line is in Food and beverages! Women tend to spend a lot more on eating than men which could be due to women spending more time shopping on average
+  - The largest disparity in the product line, only after Health and beauty, is in Food and beverages! Women tend to spend a lot more on eating than men which could be due to women spending more time shopping on average
 
   ## Memberships and Revenue
   - Apprantly, there is not much difference between the amount of money spent by membership-holders versus normal customers which tells us that perhaps our membership
@@ -69,4 +69,4 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
       - by each purchase add points to member's account,
       - reconsider membership pricing
       - direct the membership to regular customers with premium benfits not occasional buyers
-      - since most product lines sell the most to women and women tend to buy food, then give them food discount by buying from other product lines
+      - since most product lines sell the most to women and women tend to buy food more, then give them food discount by buying from other product lines
