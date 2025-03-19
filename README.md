@@ -66,6 +66,6 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
 - Reach out to men:
     - offer discounts from purchasing <b>Electronic accessories</b> items to use on <b>Sports and Travel</b>
     - while considering women's lower spending in <b>Health and Beauty</b>, keep the category interesting to men
-    - 
+  
   
   
