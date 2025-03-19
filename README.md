@@ -78,7 +78,5 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
     - offer discounts from purchasing <b>Electronic accessories</b> items to use on <b>Sports and Travel</b>
     - while considering women's lower spending in <b>Electronic accessories</b>, keep the category interesting to men
 
-
-  
-  
-  
+- The city, Mandalay, has the lowest tax rate on average, however, the average prices there is not far off from Naypyitaw, the cheapest city. 56.09 vs. 55.16
+- Mandalay could be subject to the vast discount-offering project due to lower taxes and offer online shopping from Mandalay
