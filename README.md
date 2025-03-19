@@ -46,10 +46,12 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
 
 
 # My Observation
-- The dataset was initially clean and did not require implementing doing a whole lot of data cleaning methods. The column were of expected data types and there was no sign of duplicates or missing/null values.
+- The dataset was initially clean and did not require implementing a whole lot of data cleaning methods. The column were of expected data types and there was no sign of duplicates or missing/null values.
 - Surprisingly, men spend a lot more on Health and beauty, accounting for 61.01% of the said product line total revenue.
-- 2 product lines where men lead the spending are the 2 least revenue-generative product lines (Electronic accessories & Health and beauty). 
+- 2 product lines where men lead the spending are the 2 least profitable product lines (Electronic accessories & Health and beauty). 
 - The largest disparity between product lines' revenues, was Health and beauty in which men outspend women.
-- The second largest disparity was Food and beverages; Women spend a lot more on food and beverages than men.
-- Overall, the distribution by gender seems quite egaliterian, however, men can be particulary targeted with better options
+- The second largest disparity was Food and beverages; Food and Beneverages is where women are ahead by a large distance.
+- Overall, the distribution by gender seems quite egalitarian, however, men, particulary, could've been targeted with better options.
+- Since women shows interest to eat here, they could be offered with discounts on food and beverage from purchasing items in other categories.
+  
   
