@@ -57,10 +57,11 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
     - cash back
     - birthday specials & free gifts
     - special member-only products
-    - membership types; VIP, silver, and bronze. The Better the type, the better the bonuses
+    - membership types; VIP, silver, and bronze. The Better the type, the better the bonuses and more regular discounts
 
 - offer family friendly perks.
-    - Free kids' snacks
+    - free kids' snacks
+    - discount on baby shower items
       
 
   
