@@ -59,7 +59,7 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
     - special member-only products
     - membership types; VIP, silver, and bronze. The Better the type, the better the bonuses and more regular discounts
 
-- Offer family friendly perks.
+- Offer family friendly perks:
     - free kids' snacks
     - discount on baby shower items
       
