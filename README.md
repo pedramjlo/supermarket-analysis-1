@@ -52,7 +52,16 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
 - The second largest disparity was <b>Food and Beverages</b>. Women significantly outspend men in the <b>Food and Beverages</b> category.
 - Overall, the distribution of sales by gender seems quite egalitarian, however, men, particulary, could have been targeted with better options to increase their spending across more product lines.
 - Women could be offered with discounts on <b>Food and Beverage</b> from purchasing items from product lines where they have shown less interest,<b>Health and Beauty</b>.
-- Men could also receive discounts on <b>Sports and Travel</b>
+- Men could also receive discounts on <b>Sports and Travel</b> as a result of purchasing <b>Food and Beverage</b>.
+- Offer premium options to members:
+    - cash back
+    - birthday specials & free gifts
+    - special member-only products
+    - membership types; VIP, silver, and bronze. The Better the type, the better the bonuses
+
+- offer family friendly perks.
+    - Free kids' snacks
+      
 
   
   
