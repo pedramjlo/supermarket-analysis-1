@@ -53,6 +53,7 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
 - Overall, the distribution of sales by gender seems quite egalitarian, however, men, particulary, could have been targeted with better options to increase their spending across more product lines.
 - Women could be offered with discounts on <b>Food and Beverage</b> from purchasing items from product lines where they have shown less interest,<b>Health and Beauty</b>.
 - Men could also receive discounts on <b>Sports and Travel</b> as a result of purchasing <b>Food and Beverage</b>.
+- Partner up with travel agencies to offer customers purchasing from <b>Sports and Travel</b> tickets & tours.
 - Offer premium options to members:
     - cash back
     - birthday specials & free gifts
