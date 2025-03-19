@@ -51,7 +51,7 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
 - Men lead spending in two least profitable product lines (<b>Electronic accessories</b> & <b>Health and Beauty</b>). 
 - The second largest disparity was <b>Food and Beverages</b>. Women significantly outspend men in the <b>Food and Beverages</b>.
 - Overall, the distribution of sales by gender seems quite egalitarian, however, men, particulary, could have been targeted with better options to catch up with women in more product line sales.
-- Since women could be offered with discounts on food and beverage from purchasing items from women-favourite product lines like <b>Fashion and Accessories</b>.
+- Since women could be offered with discounts on food and beverage from purchasing items from less women-favourite product lines where they the potential to spend more like <b>Health and Beauty</b>.
 - Men could also receive discounts on <b>Sports and Travel</b>
 
   
