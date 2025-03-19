@@ -46,12 +46,12 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
 
 
 # My Observation
-- The dataset was initially clean and did not require implementing a whole lot of data cleaning methods. The column were of the expected data types and there was no sign of duplicates or missing/null values.
-- Surprisingly, men spend a lot more on Health and beauty, accounting for 61.01% of the said product line total revenue.
-- Men lead spending in two least profitable product lines (Electronic accessories & Health and beauty). 
-- The second largest disparity was Food and beverages. Women significantly outspend men in the Food and Beverages category.
+- The dataset was initially clean and did not require implementing a whole lot of data cleaning methods. The column were of the expected data types and there was no sign of duplicates or missing/null values. 
+- Surprisingly, men spend a lot more on <b>Health and Beauty</b>, accounting for 61.01% of the said product line total revenue.
+- Men lead spending in two least profitable product lines (<b>Electronic accessories</b> & <b>Health and Beauty</b>). 
+- The second largest disparity was <b>Food and Beverages</b>. Women significantly outspend men in the <b>Food and Beverages</b>.
 - Overall, the distribution of sales by gender seems quite egalitarian, however, men, particulary, could have been targeted with better options to catch up with women in more product line sales.
-- Since women show a strong interest in food and beverages, they could be offered with discounts on food and beverage from purchasing items from other categories.
+- Since women could be offered with discounts on food and beverage from purchasing items from women-favourite product lines like <b>Fashion and Accessories</b>.
 - Men could also receive discounts on <b>Sports and Travel</b>
 
   
