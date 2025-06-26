@@ -1,6 +1,63 @@
 SELECT * FROM market_sales_analysis;
 
 
+-- TOTAL SALES ->    348692.3915
+
+SELECT 
+    SUM(Quantity * Unit_Price) + SUM(Tax_five_percent) AS Total_Sales
+FROM market_sales_analysis;
+
+
+
+
+
+-- TAXES BY CITY IN CORRELATION TO AVERAGE PRICE AND REVENUE RANK OF THE CITIES
+/*
+
+The average prices seem to not be directly correlated with the tax rate
+
+*/
+WITH TAX_PER_CITY AS (
+    SELECT 
+        City,
+        ROUND(AVG(Unit_price), 2) AS Average_Price, 
+        ROUND(AVG(Tax_five_percent), 2) AS Average_Tax_Rate,           
+        AVG(Quantity) as Average_Quantity_Sold,
+        RANK() OVER (ORDER BY SUM(Quantity * Unit_Price) + SUM(Tax_five_percent) DESC) AS Revenue_Rank
+    FROM market_sales_analysis
+    GROUP BY City
+)
+SELECT 
+    City,
+    Average_Tax_Rate, 
+    Average_Price,
+    Average_Quantity_Sold,
+    Revenue_Rank
+FROM TAX_PER_CITY
+ORDER BY Revenue_Rank;
+
+
+
+
+
+-- QUANTITY SOLD BY GENDER
+WITH QUANTITY_SOLD_BY_GENDER AS (
+    SELECT 
+        Gender,
+        SUM(Quantity) AS Quantity_Sold
+    FROM market_sales_analysis
+    WHERE Gender IN ('Female', 'Male')
+    GROUP BY Gender
+)
+SELECT 
+    Gender, 
+    Quantity_Sold
+FROM QUANTITY_SOLD_BY_GENDER;
+
+
+
+
+
 -- SALES RANKING BY GENDER
 /*
  
@@ -8,13 +65,27 @@ SELECT * FROM market_sales_analysis;
 2- MALE           168920.658
 
 */
+WITH Aggregated_Sales AS (
+    SELECT 
+        GENDER,
+        SUM(Quantity * Unit_Price) + SUM(Tax_five_percent) AS Total_Sales
+    FROM market_sales_analysis
+    GROUP BY GENDER
+),
+Ranked_Sales AS (
+    SELECT 
+        GENDER,
+        Total_Sales,
+        RANK() OVER (ORDER BY Total_Sales DESC) AS Rank
+    FROM Aggregated_Sales
+)
 SELECT 
     GENDER,
-    SUM(Quantity * Unit_Price) + SUM(Tax_five_percent) AS Total_Sales,
-    RANK() OVER (ORDER BY Quantity * Unit_Price DESC) as Rank
-FROM market_sales_analysis
-GROUP BY GENDER
+    Total_Sales,
+    Rank
+FROM Ranked_Sales
 ORDER BY Rank ASC;
+
 
 
 
@@ -28,10 +99,11 @@ ORDER BY Rank ASC;
 */
 SELECT 
     Branch,
+    City,
     SUM(Quantity * Unit_Price) + SUM(Tax_five_percent) AS Total_Sales,
     RANK() OVER (ORDER BY Quantity * Unit_Price DESC) as Rank
 FROM market_sales_analysis
-GROUP BY Branch
+GROUP BY Branch, City
 ORDER BY Rank ASC;
 
 
@@ -65,6 +137,7 @@ ORDER BY Customer_Type_Sales DESC;
 2- Normal       2725
 
 */
+
 WITH CUSTOMER_TYPE_QUANTITY AS (
     SELECT 
         Customer_Type,
@@ -165,15 +238,14 @@ ORDER BY Product_Line_Sales DESC;
 
 Product Line                    Female                  Male
 
-1- Fashion accessories          55.45%                   44.54%
-2- Sports and travel            51.78%                   48.21%
-3- Home and lifestyle           55.1%                    44.89%
+1- Fashion accessories          55.45%                  44.54%
+2- Sports and travel            51.78%                  48.21%
+3- Home and lifestyle           55.1%                   44.89%
 4- Food and beverages           59.41%              	40.58%
 5- Electronic accessories       49.61%                  50.38%
 6- Health and beauty            38.98%             	    61.01%
 
 */
-
 WITH PRODUCT_LINE_SALES_BY_GENDER AS (
     SELECT 
         Product_line,
@@ -196,7 +268,6 @@ PRODUCT_LINE_SALES_WITH_PERCENTAGE AS (
         plsg.Gender,
         plsg.Product_Line_Sales,
         plt.Total_Product_Line_Sales,
-        -- Share of revenue in percentage
         (plsg.Product_Line_Sales / plt.Total_Product_Line_Sales) * 100 AS Revenue_Share_Percentage
     FROM PRODUCT_LINE_SALES_BY_GENDER plsg
     JOIN PRODUCT_LINE_TOTALS plt
@@ -209,3 +280,19 @@ SELECT
     Revenue_Share_Percentage
 FROM PRODUCT_LINE_SALES_WITH_PERCENTAGE
 ORDER BY Product_line, Gender;
+
+
+
+-- Average sales per product line (including quantity and tax)
+WITH AVERAGE_SALES_BY_PRODUCT_LINE AS (
+    SELECT 
+        Product_line,
+        AVG(Unit_Price) AS Average_Sales
+    FROM market_sales_analysis
+    GROUP BY Product_line
+)
+SELECT 
+    Product_line,
+    Average_Sales
+FROM AVERAGE_SALES_BY_PRODUCT_LINE
+ORDER BY Average_Sales DESC;
