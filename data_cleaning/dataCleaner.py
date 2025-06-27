@@ -149,34 +149,3 @@ class DataCleaner:
         return self.df
             
             
-
-
-
-
-raw_dataset = "../dataset/raw/market_sales.csv"
-data = pd.read_csv(raw_dataset)
-
-
-
-
-cleaner = DataCleaning(raw_dataset=raw_dataset)
-
-
-cleaner.drop_duplicate_rows()
-
-
-
-
-data["Product line"].unique()
-
-
-# # MISSING VALUES
-# the dataset does not contain any missing or NaN values
-
-
-
-data.isna().sum()
-
-
-cleaner.run_cleaner_pipeline()
-
