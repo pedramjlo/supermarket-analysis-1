@@ -4,5 +4,4 @@ python/sqlCOnfig.py
 .venv
 .env
 *.db
-
-
+/sqlite_db

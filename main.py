@@ -2,6 +2,7 @@ import pandas as pd
 
 from data_cleaning.dataCleaner import DataCleaner
 from data_saving.dataSaver import DataSaver
+from database_utils.databseUtils import Database
 
 
 
@@ -22,6 +23,11 @@ class Pipeline:
         saver.save_clean_data(df=self.cleaned_data, filename="cleaned_market_sales.csv")
 
 
+    def load_to_db(self):
+        db = Database()
+        db.run_db()
+
+
     
 
 
@@ -31,3 +37,4 @@ if __name__ == "__main__":
     pl = Pipeline(raw_data=raw_data)
     pl.clean_data()
     pl.save_data()
+    pl.load_to_db()
