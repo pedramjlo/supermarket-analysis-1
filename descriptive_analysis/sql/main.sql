@@ -35,14 +35,16 @@ WITH REVENUE_BY_GENDER AS (
     SELECT
         city,
         gender,
-        SUM((unit_price * quantity) + calculated_tax) AS total_spending
+        SUM((unit_price * quantity) + calculated_tax) AS total_spending,
+        AVG((unit_price * quantity) + calculated_tax) AS avg_spending
     FROM market_sales
     GROUP BY city, gender
 )
 SELECT 
     city,
     gender,
-    total_spending
+    total_spending,
+    ROUND(avg_spending, 3) as avg_spending
 FROM REVENUE_BY_GENDER
 ORDER BY city, gender, total_spending;
 
