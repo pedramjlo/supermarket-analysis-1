@@ -68,3 +68,73 @@ SELECT
 FROM WOMEN_FAV_CATEGORY
 WHERE rank = 1
 ORDER BY city;
+
+
+-- WOMEN'S LEAST FAVOURITE CATEGORIES IN EACH CITY
+WITH WOMEN_FAV_CATEGORY AS (
+    SELECT 
+        city,
+        product_line,
+        gender,
+        SUM((unit_price * quantity) + calculated_tax) AS total_spending,
+        RANK() OVER (PARTITION BY city ORDER BY SUM((unit_price * quantity) + calculated_tax) ASC) AS rank
+    FROM market_sales
+    WHERE gender is 'Female'
+    GROUP BY city, product_line, gender
+)
+SELECT 
+    city,
+    gender,
+    product_line,
+    total_spending
+FROM WOMEN_FAV_CATEGORY
+WHERE rank = 1
+ORDER BY city;
+
+
+
+-- MEN'S FAVOURITE CATEGORIES IN EACH CITY
+WITH WOMEN_FAV_CATEGORY AS (
+    SELECT 
+        city,
+        product_line,
+        gender,
+        SUM((unit_price * quantity) + calculated_tax) AS total_spending,
+        RANK() OVER (PARTITION BY city ORDER BY SUM((unit_price * quantity) + calculated_tax) DESC) AS rank
+    FROM market_sales
+    WHERE gender is 'Male'
+    GROUP BY city, product_line, gender
+)
+SELECT 
+    city,
+    gender,
+    product_line,
+    total_spending
+FROM WOMEN_FAV_CATEGORY
+WHERE rank = 1
+ORDER BY city;
+
+
+
+-- MEN'S LEAST FAVOURITE CATEGORIES IN EACH CITY
+WITH WOMEN_FAV_CATEGORY AS (
+    SELECT 
+        city,
+        product_line,
+        gender,
+        SUM((unit_price * quantity) + calculated_tax) AS total_spending,
+        RANK() OVER (PARTITION BY city ORDER BY SUM((unit_price * quantity) + calculated_tax) ASC) AS rank
+    FROM market_sales
+    WHERE gender is 'Male'
+    GROUP BY city, product_line, gender
+)
+SELECT 
+    city,
+    gender,
+    product_line,
+    total_spending
+FROM WOMEN_FAV_CATEGORY
+WHERE rank = 1
+ORDER BY city;
+
+
