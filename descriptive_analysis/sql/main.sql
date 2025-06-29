@@ -13,6 +13,8 @@ ORDER BY total_revenue DESC;
 
 
 
+
+
 -- REVENUE BY CATEGORY PER CITY
 WITH REVENUE_PER_CATEGORY AS (
     SELECT
@@ -27,7 +29,7 @@ SELECT
     product_line,
     total_revenue
 FROM REVENUE_PER_CATEGORY
-ORDER BY city, product_line, total_revenue DESC;
+ORDER BY total_revenue DESC;
 
 
 -- MALE AND FEMALE TOTAL SPENDING BY CITY
@@ -138,5 +140,37 @@ SELECT
 FROM WOMEN_FAV_CATEGORY
 WHERE rank = 1
 ORDER BY city;
+
+
+
+-- TOTAL QUANTITY SOLD PER CATEGORY 
+SELECT 
+    product_line,
+    SUM(quantity) as quantity_sold
+FROM market_sales
+GROUP BY product_line
+ORDER BY quantity_sold DESC;
+
+
+
+
+
+
+
+-- TOP SELLING BRANCH IN EACH CITY
+WITH BRANCH_REVENUE AS (
+    SELECT
+        city,
+        branch,
+        SUM((unit_price * quantity) + calculated_tax) AS total_revenue
+    FROM market_sales
+    GROUP BY city, branch
+)
+SELECT
+    city,
+    branch,
+    MAX(total_revenue) as total_revenue
+FROM BRANCH_REVENUE
+GROUP BY city;
 
 
