@@ -5,10 +5,9 @@ import pandas as pd
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
 
-# Dynamically get the root directory of the project
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from config import settings
 
-env_path = os.path.join(PROJECT_ROOT, '.env')
+env_path = os.path.join(settings.PROJECT_ROOT, '.env')
 load_dotenv(dotenv_path=env_path)
 
 logging.basicConfig(
@@ -18,9 +17,10 @@ logging.basicConfig(
 
 
 class Database:
-    def __init__(self, 
-                 file_path=os.path.join(PROJECT_ROOT, "dataset", "cleaned_data", "cleaned_market_sales.csv"),
-                 sqlite_db_path=os.path.join(PROJECT_ROOT, "sqlite_db", "market_sales.db")):
+    def __init__(
+        self, 
+        file_path=os.path.join(settings.PROJECT_ROOT, "dataset", "cleaned_data", "cleaned_market_sales.csv"),
+        sqlite_db_path=os.path.join(settings.PROJECT_ROOT, "sqlite_db", "market_sales.db")):
         self.sqlite_db_path = sqlite_db_path
         self.connection_url = f"sqlite:///{self.sqlite_db_path}"
         self.target_dataset = pd.read_csv(file_path)
