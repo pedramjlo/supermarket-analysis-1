@@ -13,6 +13,24 @@ ORDER BY total_revenue DESC;
 
 
 
+-- AVERAGE PRICES PER CATEGORY IN EACH CITY
+WITH CATEGORY_PRICE AS (
+    SELECT
+        city, 
+        product_line,
+        AVG((unit_price * quantity) + calculated_tax) AS avg_price,
+        RANK() OVER (ORDER BY  AVG((unit_price * quantity) + calculated_tax) DESC) AS rank
+    FROM market_sales
+    GROUP BY city, product_line
+)
+SELECT 
+    city,
+    product_line,
+    ROUND(avg_price, 3),
+    rank
+FROM CATEGORY_PRICE;
+
+
 
 
 -- REVENUE BY CATEGORY PER CITY
@@ -172,5 +190,38 @@ SELECT
     MAX(total_revenue) as total_revenue
 FROM BRANCH_REVENUE
 GROUP BY city;
+
+
+-- MEMBERS' VS NORMAL CUSTOMERS' SPENDINGS IN EACH CITY
+WITH MEMBERS_SPENDING AS (
+    SELECT 
+        city,
+        customer_type,
+        SUM((unit_price * quantity) + calculated_tax) AS total_spending
+    FROM market_sales
+    WHERE customer_type = 'Member'
+    GROUP BY city, customer_type
+),
+NORMAL_SPENDING AS (
+    SELECT 
+        city,
+        customer_type,
+        SUM((unit_price * quantity) + calculated_tax) AS total_spending
+    FROM market_sales
+    WHERE customer_type = 'Normal'
+    GROUP BY city, customer_type
+)
+SELECT 
+    city,
+    customer_type,
+    total_spending
+FROM MEMBERS_SPENDING  
+UNION ALL
+SELECT 
+    city,
+    customer_type,
+    total_spending
+FROM NORMAL_SPENDING;
+
 
 
