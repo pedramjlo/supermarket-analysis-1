@@ -22,13 +22,15 @@ WITH CATEGORY_PRICE AS (
         RANK() OVER (ORDER BY  AVG((unit_price * quantity) + calculated_tax) DESC) AS rank
     FROM market_sales
     GROUP BY city, product_line
+    ORDER by rank
 )
 SELECT 
     city,
     product_line,
     ROUND(avg_price, 3),
     rank
-FROM CATEGORY_PRICE;
+FROM CATEGORY_PRICE
+ORDER BY city;
 
 
 
@@ -192,12 +194,13 @@ FROM BRANCH_REVENUE
 GROUP BY city;
 
 
--- MEMBERS' VS NORMAL CUSTOMERS' SPENDINGS IN EACH CITY
+
+-- MEMBERS' VS NORMAL CUSTOMERS' AVERAGE SPENDINGS IN EACH CITY
 WITH MEMBERS_SPENDING AS (
     SELECT 
         city,
         customer_type,
-        SUM((unit_price * quantity) + calculated_tax) AS total_spending
+        AVG((unit_price * quantity) + calculated_tax) AS avg_spending
     FROM market_sales
     WHERE customer_type = 'Member'
     GROUP BY city, customer_type
@@ -206,7 +209,7 @@ NORMAL_SPENDING AS (
     SELECT 
         city,
         customer_type,
-        SUM((unit_price * quantity) + calculated_tax) AS total_spending
+        AVG((unit_price * quantity) + calculated_tax) AS avg_spending
     FROM market_sales
     WHERE customer_type = 'Normal'
     GROUP BY city, customer_type
@@ -214,14 +217,90 @@ NORMAL_SPENDING AS (
 SELECT 
     city,
     customer_type,
-    total_spending
+    avg_spending
 FROM MEMBERS_SPENDING  
 UNION ALL
 SELECT 
     city,
     customer_type,
-    total_spending
+    avg_spending
 FROM NORMAL_SPENDING;
 
 
+
+-- MEMBERS' VS NORMAL CUSTOMERS' AVERAGE SPENDINGS IN EACH BRANCH IN EACH CITY
+
+WITH MEMBERS_SPENDING AS (
+    SELECT 
+        city,
+        customer_type,
+        branch,
+        AVG((unit_price * quantity) + calculated_tax) AS avg_spending
+    FROM market_sales
+    WHERE customer_type = 'Member'
+    GROUP BY city, customer_type, branch
+    ORDER BY avg_spending DESC
+),
+NORMAL_SPENDING AS (
+    SELECT 
+        city,
+        customer_type,
+        branch,
+        AVG((unit_price * quantity) + calculated_tax) AS avg_spending
+    FROM market_sales
+    WHERE customer_type = 'Normal'
+    GROUP BY city, customer_type, branch
+    ORDER BY avg_spending DESC
+)
+SELECT 
+    city,
+    customer_type,
+    branch,
+    avg_spending
+FROM MEMBERS_SPENDING  
+UNION ALL
+SELECT 
+    city,
+    customer_type,
+    branch,
+    avg_spending
+FROM NORMAL_SPENDING;
+
+
+-- MEMBERS' FAVOURITE CATEGORY IN EACH CITY
+WITH MEMBERS_FAV_CATEGORY AS (
+    SELECT 
+        city,
+        product_line,
+        SUM((unit_price * quantity) + calculated_tax) AS members_spending
+    FROM market_sales
+    WHERE customer_type = 'Member'
+    GROUP BY city, product_line
+    ORDER BY members_spending DESC
+)
+SELECT 
+    city,
+    product_line,
+    members_spending
+FROM MEMBERS_FAV_CATEGORY
+ORDER by city;
+
+
+-- NORMAL CUSTOMERS' FAVOURITE CATEGORY IN EACH CITY
+WITH CUSTOMERS_FAV_CATEGORY AS (
+    SELECT 
+        city,
+        product_line,
+        SUM((unit_price * quantity) + calculated_tax) AS customer_spending
+    FROM market_sales
+    WHERE customer_type = 'Normal'
+    GROUP BY city, product_line
+    ORDER BY customer_spending DESC
+)
+SELECT 
+    city,
+    product_line,
+    customer_spending
+FROM CUSTOMERS_FAV_CATEGORY
+ORDER by city;
 
