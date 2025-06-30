@@ -177,7 +177,7 @@ ORDER BY quantity_sold DESC;
 
 
 
--- TOP SELLING BRANCH IN EACH CITY
+-- TOP SELLING BRANCHES
 WITH BRANCH_REVENUE AS (
     SELECT
         city,
@@ -185,13 +185,13 @@ WITH BRANCH_REVENUE AS (
         SUM((unit_price * quantity) + calculated_tax) AS total_revenue
     FROM market_sales
     GROUP BY city, branch
+    ORDER by total_revenue DESC
 )
 SELECT
     city,
     branch,
-    MAX(total_revenue) as total_revenue
-FROM BRANCH_REVENUE
-GROUP BY city;
+    total_revenue
+FROM BRANCH_REVENUE;
 
 
 
@@ -304,3 +304,54 @@ SELECT
 FROM CUSTOMERS_FAV_CATEGORY
 ORDER by city;
 
+
+
+-- AVERAGE TAXES PAID PER CITY 
+WITH TAX_PER_CITY AS (
+    SELECT
+        city,
+        AVG(calculated_tax) as avg_tax_paid
+    FROM market_sales
+    GROUP BY city
+)
+SELECT
+    city,
+    ROUND(avg_tax_paid, 3)
+FROM TAX_PER_CITY;
+
+
+
+
+
+-- AVERAGE TAXES PAID ON CATEGORIES PER CITY 
+WITH CATEGORY_TAX_PER_CITY AS (
+    SELECT
+        city,
+        product_line,
+        AVG(calculated_tax) as avg_tax_paid
+    FROM market_sales
+    GROUP BY city, product_line
+)
+SELECT
+    city,
+    product_line,
+    ROUND(avg_tax_paid, 3)
+FROM CATEGORY_TAX_PER_CITY;
+
+
+-- AVERAGE NUMBER OF PRODUCTS BOUGHT PER CATEGORY BY GENDER
+WITH PRODUCT_BOUGHT AS (
+    SELECT
+        gender,
+        product_line,
+        AVG(quantity) as quantity_sold
+    FROM market_sales
+    GROUP BY gender, product_line
+    ORDER BY quantity_sold DESC
+)
+SELECT 
+    gender,
+    product_line,
+    ROUND(quantity_sold, 1)
+FROM PRODUCT_BOUGHT
+ORDER BY product_line;
