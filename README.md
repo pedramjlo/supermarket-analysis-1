@@ -38,10 +38,10 @@ Supermarket sales analysis from <a href='https://www.kaggle.com/datasets/willian
 <table><tr><th>Branch</th><th>City</th><th>Total_Sales</th><th>Rank</th><tr><tr><td>A</td><td>Yangon</td><td>115426.737</td><td>1</td></tr><tr><td>B</td><td>Mandalay</td><td>112880.0775</td><td>2</td></tr><tr><td>C</td><td>Naypyitaw</td><td>120385.577</td><td>3</td></tr></table>
 
 ## TOTAL SALES BY CUSTOMER TYPE
-<table><tr><th>Customer_Type</th><th>Customer_Type_Sales</th><tr><tr><td>Member</td><td>177796.1345</td></tr><tr><td>Normal</td><td>170896.257</td></tr></table>
+<table><tr><th>Customer_Type</th><th>Total_Spending</th><tr><tr><td>Member</td><td>177796.1345</td></tr><tr><td>Normal</td><td>170896.257</td></tr></table>
 
 ## QUANTITY OF SALES BY CUSTOMER TYPE
-<table><tr><th>Customer_Type</th><th>Customer_Type_Quantity</th><tr><tr><td>Member</td><td>2785</td></tr><tr><td>Normal</td><td>2725</td></tr></table>
+<table><tr><th>Customer_Type</th><th>Total_Spending</th><tr><tr><td>Member</td><td>2785</td></tr><tr><td>Normal</td><td>2725</td></tr></table>
 
 ## REVENUE BY PRODUCT LINES
 <table><tr><th>Product_line</th><th>Product_Line_Sales</th><tr><tr><td>Fashion accessories</td><td>61611.977</td></tr><tr><td>Sports and travel</td><td>59508.292</td></tr><tr><td>Home and lifestyle</td><td>58486.2165</td></tr><tr><td>Food and beverages</td><td>58351.15</td></tr><tr><td>Electronic accessories</td><td>57443.634</td></tr><tr><td>Health and beauty</td><td>53291.122</td></tr></table>
